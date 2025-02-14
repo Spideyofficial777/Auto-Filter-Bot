@@ -50,7 +50,7 @@ async def start(client, message):
             InlineKeyboardButton('🧑‍💻 sᴜᴘᴘᴏʀᴛ', url=SUPPORT_LINK)
         ],[
             InlineKeyboardButton('👨‍🚒 ʜᴇʟᴘ', callback_data='help'),
-            InlineKeyboardButton('🔎 sᴇᴀʀᴄʜ ɪɴʟɪɴᴇ', switch_inline_query_current_chat=''),
+            
             InlineKeyboardButton('📚 ᴀʙᴏᴜᴛ', callback_data='about')
         ],[
             InlineKeyboardButton('💰 ᴇᴀʀɴ ᴜɴʟɪᴍɪᴛᴇᴅ ᴍᴏɴᴇʏ ʙʏ ʙᴏᴛ 💰', callback_data='earn')
@@ -86,30 +86,26 @@ async def start(client, message):
             return await message.reply("Your verify token is invalid.")
         expiry_time = datetime.datetime.now() + datetime.timedelta(seconds=VERIFY_EXPIRE)
         await update_verify_status(message.from_user.id, is_verified=True, verified_time=time_now(), expire_time=expiry_time)
-        if verify_status["link"] == "":
-            reply_markup = None
-        else:
-            btn = [[
-                InlineKeyboardButton("📌 Get File 📌", url=f'https://t.me/{temp.U_NAME}?start={verify_status["link"]}')
-            ]]
-            reply_markup = InlineKeyboardMarkup(btn)
-        await message.reply(f"✅ You successfully verified until: {get_readable_time(VERIFY_EXPIRE)}", reply_markup=reply_markup, protect_content=True)
-        return
+    
+   if verify_status["link"]:
+    btn = [[
+        InlineKeyboardButton("📌 Get File 📌", url=f'https://t.me/{temp.U_NAME}?start={verify_status["link"]}')
+    ]]
+    reply_markup = InlineKeyboardMarkup(btn + default_buttons)
+else:
+    reply_markup = InlineKeyboardMarkup(default_buttons)
+
+
+await msg.reply_photo(
+    photo="https://graph.org/file/6928de1539e2e80e47fb8.jpg",
+    caption=f"<b>👋 ʜᴇʏ {message.from_user.mention}, ʏᴏᴜ'ʀᴇ ꜱᴜᴄᴄᴇꜱꜱꜰᴜʟʟʏ ᴠᴇʀɪꜰɪᴇᴅ ✅\n\nɴᴏᴡ ʏᴏᴜ'ᴠᴇ ᴜɴʟɪᴍɪᴛᴇᴅ ᴀᴄᴄᴇꜱꜱ ᴛɪʟʟ ɴᴇxᴛ ᴠᴇʀɪꜰɪᴄᴀᴛɪᴏɴ 🎉</b>: {get_readable_time(VERIFY_EXPIRE)}",
+    reply_markup=reply_markup,
+    protect_content=True)
+    return
     
     verify_status = await get_verify_status(message.from_user.id)
     if not await db.has_premium_access(message.from_user.id):
-        if IS_VERIFY and not verify_status['is_verified']:
-            token = ''.join(random.choices(string.ascii_letters + string.digits, k=10))
-            await update_verify_status(message.from_user.id, verify_token=token, link="" if mc == 'inline_verify' else mc)
-            link = await get_shortlink(SHORTLINK_URL, SHORTLINK_API, f'https://t.me/{temp.U_NAME}?start=verify_{token}')
-            btn = [[
-                InlineKeyboardButton("🧿 Verify 🧿", url=link)
-            ],[
-                InlineKeyboardButton('🗳 Tutorial 🗳', url=VERIFY_TUTORIAL)
-            ]]
-            await message.reply("You not verified today! Kindly verify now. 🔐", reply_markup=InlineKeyboardMarkup(btn), protect_content=True)
-            return
-
+    
     settings = await get_settings(int(mc.split("_", 2)[1]))
     if not await db.has_premium_access(message.from_user.id):
         if settings['fsub']:

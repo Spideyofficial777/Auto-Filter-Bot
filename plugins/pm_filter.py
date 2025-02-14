@@ -119,7 +119,7 @@ async def group_search(client, message):
 async def next_page(bot, query):
     ident, req, key, offset = query.data.split("_")
     if int(req) not in [query.from_user.id, 0]:
-        return await query.answer(f"Hello {query.from_user.first_name},\nDon't Click Other Results!", show_alert=True)
+        return await query.answer(f"Hᴇʟʟᴏ {lquery.from_user.first_name},\nDᴏɴ'ᴛ Cʟɪᴄᴋ Oᴛʜᴇʀ Rᴇsᴜʟᴛs!", show_alert=True)
     try:
         offset = int(offset)
     except:
@@ -127,7 +127,7 @@ async def next_page(bot, query):
     search = BUTTONS.get(key)
     cap = CAP.get(key)
     if not search:
-        await query.answer(f"Hello {query.from_user.first_name},\nSend New Request Again!", show_alert=True)
+        await query.answer(f"Hᴇʟʟᴏ {query.from_user.first_name},\nSᴇɴᴅ Nᴇᴡ Rᴇǫᴜᴇsᴛ Aɢᴀɪɴ!", show_alert=True)
         return
 
     files, n_offset, total = await get_search_results(search, offset=offset)
@@ -202,7 +202,7 @@ async def next_page(bot, query):
 async def languages_(client: Client, query: CallbackQuery):
     _, key, req, offset = query.data.split("#")
     if int(req) != query.from_user.id:
-        return await query.answer(f"Hello {query.from_user.first_name},\nDon't Click Other Results!", show_alert=True)
+        return await query.answer(f"Hᴇʟʟᴏ {lquery.from_user.first_name},\nDᴏɴ'ᴛ Cʟɪᴄᴋ Oᴛʜᴇʀ Rᴇsᴜʟᴛs!", show_alert=True)
     btn = [
         [InlineKeyboardButton(text=LANGUAGES[i].title(), callback_data=f"lang_search#{LANGUAGES[i]}#{key}#{offset}#{req}"),
          InlineKeyboardButton(text=LANGUAGES[i+1].title(), callback_data=f"lang_search#{LANGUAGES[i+1]}#{key}#{offset}#{req}")]
@@ -215,7 +215,7 @@ async def languages_(client: Client, query: CallbackQuery):
 async def quality(client: Client, query: CallbackQuery):
     _, key, req, offset = query.data.split("#")
     if int(req) != query.from_user.id:
-        return await query.answer(f"Hello {query.from_user.first_name},\nDon't Click Other Results!", show_alert=True)
+        return await query.answer(f"Hᴇʟʟᴏ {lquery.from_user.first_name},\nDᴏɴ'ᴛ Cʟɪᴄᴋ Oᴛʜᴇʀ Rᴇsᴜʟᴛs!", show_alert=True)
     btn = [
         [InlineKeyboardButton(text=QUALITY[i].title(), callback_data=f"qual_search#{QUALITY[i]}#{key}#{offset}#{req}"),
          InlineKeyboardButton(text=QUALITY[i+1].title(), callback_data=f"qual_search#{QUALITY[i+1]}#{key}#{offset}#{req}")]
@@ -228,12 +228,12 @@ async def quality(client: Client, query: CallbackQuery):
 async def filter_languages_cb_handler(client: Client, query: CallbackQuery):
     _, lang, key, offset, req = query.data.split("#")
     if int(req) != query.from_user.id:
-        return await query.answer(f"Hello {query.from_user.first_name},\nDon't Click Other Results!", show_alert=True)
+        return await query.answer(f"Hᴇʟʟᴏ {lquery.from_user.first_name},\nDᴏɴ'ᴛ Cʟɪᴄᴋ Oᴛʜᴇʀ Rᴇsᴜʟᴛs!", show_alert=True)
 
     search = BUTTONS.get(key)
     cap = CAP.get(key)
     if not search:
-        await query.answer(f"Hello {query.from_user.first_name},\nSend New Request Again!", show_alert=True)
+        await query.answer(f"Hᴇʟʟᴏ {query.from_user.first_name},\nSᴇɴᴅ Nᴇᴡ Rᴇǫᴜᴇsᴛ Aɢᴀɪɴ!", show_alert=True)
         return 
 
     files, l_offset, total_results = await get_search_results(search, lang=lang)
@@ -284,7 +284,7 @@ async def filter_languages_cb_handler(client: Client, query: CallbackQuery):
 async def lang_next_page(bot, query):
     ident, req, key, lang, l_offset, offset = query.data.split("#")
     if int(req) != query.from_user.id:
-        return await query.answer(f"Hello {query.from_user.first_name},\nDon't Click Other Results!", show_alert=True)
+        return await query.answer(f"Hᴇʟʟᴏ {lquery.from_user.first_name},\nDᴏɴ'ᴛ Cʟɪᴄᴋ Oᴛʜᴇʀ Rᴇsᴜʟᴛs!", show_alert=True)
     try:
         l_offset = int(l_offset)
     except:
@@ -294,7 +294,7 @@ async def lang_next_page(bot, query):
     settings = await get_settings(query.message.chat.id)
     del_msg = f"\n\n<b>⚠️ ᴛʜɪs ᴍᴇssᴀɢᴇ ᴡɪʟʟ ʙᴇ ᴀᴜᴛᴏ ᴅᴇʟᴇᴛᴇ ᴀꜰᴛᴇʀ <code>{get_readable_time(DELETE_TIME)}</code> ᴛᴏ ᴀᴠᴏɪᴅ ᴄᴏᴘʏʀɪɢʜᴛ ɪssᴜᴇs</b>" if settings["auto_delete"] else ''
     if not search:
-        await query.answer(f"Hello {query.from_user.first_name},\nSend New Request Again!", show_alert=True)
+        await query.answer(f"Hᴇʟʟᴏ {query.from_user.first_name},\nSᴇɴᴅ Nᴇᴡ Rᴇǫᴜᴇsᴛ Aɢᴀɪɴ!", show_alert=True)
         return
     files, n_offset, total = await get_search_results(search, offset=l_offset, lang=lang)
     if not files:
@@ -360,11 +360,11 @@ async def lang_next_page(bot, query):
 async def quality_search(client: Client, query: CallbackQuery):
     _, qual, key, offset, req = query.data.split("#")
     if int(req) != query.from_user.id:
-        return await query.answer(f"Hello {query.from_user.first_name},\nDon't Click Other Results!", show_alert=True)
+        return await query.answer(f"Hᴇʟʟᴏ {lquery.from_user.first_name},\nDᴏɴ'ᴛ Cʟɪᴄᴋ Oᴛʜᴇʀ Rᴇsᴜʟᴛs!", show_alert=True)
     search = BUTTONS.get(key)
     cap = CAP.get(key)
     if not search:
-        await query.answer(f"Hello {query.from_user.first_name},\nSend New Request Again!", show_alert=True)
+        await query.answer(f"Hᴇʟʟᴏ {query.from_user.first_name},\nSᴇɴᴅ Nᴇᴡ Rᴇǫᴜᴇsᴛ Aɢᴀɪɴ!", show_alert=True)
         return
     files, l_offset, total_results = await get_search_results(search, lang=qual)
     if not files:
@@ -406,7 +406,7 @@ async def quality_search(client: Client, query: CallbackQuery):
 async def quality_next_page(bot, query):
     ident, req, key, qual, l_offset, offset = query.data.split("#")
     if int(req) != query.from_user.id:
-        return await query.answer(f"Hello {query.from_user.first_name},\nDon't Click Other Results!", show_alert=True)
+        return await query.answer(f"Hᴇʟʟᴏ {lquery.from_user.first_name},\nDᴏɴ'ᴛ Cʟɪᴄᴋ Oᴛʜᴇʀ Rᴇsᴜʟᴛs!", show_alert=True)
     try:
         l_offset = int(l_offset)
     except:
@@ -416,7 +416,7 @@ async def quality_next_page(bot, query):
     settings = await get_settings(query.message.chat.id)
     del_msg = f"\n\n<b>⚠️ ᴛʜɪs ᴍᴇssᴀɢᴇ ᴡɪʟʟ ʙᴇ ᴀᴜᴛᴏ ᴅᴇʟᴇᴛᴇ ᴀꜰᴛᴇʀ <code>{get_readable_time(DELETE_TIME)}</code> ᴛᴏ ᴀᴠᴏɪᴅ ᴄᴏᴘʏʀɪɢʜᴛ ɪssᴜᴇs</b>" if settings["auto_delete"] else ''
     if not search:
-        await query.answer(f"Hello {query.from_user.first_name},\nSend New Request Again!", show_alert=True)
+        await query.answer(f"Hᴇʟʟᴏ {query.from_user.first_name},\nSᴇɴᴅ Nᴇᴡ Rᴇǫᴜᴇsᴛ Aɢᴀɪɴ!", show_alert=True)
         return
     files, n_offset, total = await get_search_results(search, offset=l_offset, lang=qual)
     if not files:
@@ -476,7 +476,7 @@ async def quality_next_page(bot, query):
 async def advantage_spoll_choker(bot, query):
     _, id, user = query.data.split('#')
     if int(user) != 0 and query.from_user.id != int(user):
-        return await query.answer(f"Hello {query.from_user.first_name},\nDon't Click Other Results!", show_alert=True)
+        return await query.answer(f"Hᴇʟʟᴏ {lquery.from_user.first_name},\nDᴏɴ'ᴛ Cʟɪᴄᴋ Oᴛʜᴇʀ Rᴇsᴜʟᴛs!", show_alert=True)
     movie = await get_poster(id, id=True)
     search = movie.get('title')
     s = await query.message.edit_text(f"<b><i><code>{search}</code> Check In My Database...</i></b>")
@@ -517,7 +517,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
         except:
             user = query.message.from_user.id
         if int(user) != 0 and query.from_user.id != int(user):
-            return await query.answer(f"Hello {query.from_user.first_name},\nDon't Click Other Results!", show_alert=True)
+            return await query.answer(f"Hᴇʟʟᴏ {lquery.from_user.first_name},\nDᴏɴ'ᴛ Cʟɪᴄᴋ Oᴛʜᴇʀ Rᴇsᴜʟᴛs!", show_alert=True)
         await query.answer(url=f"https://t.me/{temp.U_NAME}?start=file_{query.message.chat.id}_{file_id}")
 
     elif query.data.startswith("get_del_file"):
@@ -551,7 +551,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
         free_trial_status = await db.get_free_trial_status(user_id)
         if not free_trial_status:            
             await db.give_free_trail(user_id)
-            new_text = "**ʏᴏᴜ ᴄᴀɴ ᴜsᴇ ꜰʀᴇᴇ ᴛʀᴀɪʟ ꜰᴏʀ 5 ᴍɪɴᴜᴛᴇs ꜰʀᴏᴍ ɴᴏᴡ 😀\n\nआप अब से 5 मिनट के लिए निःशुल्क ट्रायल का उपयोग कर सकते हैं 😀**"        
+            new_text = "<b>ʏᴏᴜ ᴄᴀɴ ᴜsᴇ ꜰʀᴇᴇ ᴛʀᴀɪʟ ꜰᴏʀ 5 ᴍɪɴᴜᴛᴇs ꜰʀᴏᴍ ɴᴏᴡ 😀\n\nआप अब से 5 मिनट के लिए निःशुल्क ट्रायल का उपयोग कर सकते हैं 😀</b>"        
             await query.message.edit_text(text=new_text)
             return
         else:
@@ -608,7 +608,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             InlineKeyboardButton('🧑‍💻 ꜱᴜᴘᴘᴏʀᴛ', url=SUPPORT_LINK)
         ],[
             InlineKeyboardButton('👨‍🚒 ʜᴇʟᴘ', callback_data='help'),
-            InlineKeyboardButton('🔎 ɪɴʟɪɴᴇ', switch_inline_query_current_chat=''),
+            
             InlineKeyboardButton('📚 ᴀʙᴏᴜᴛ', callback_data='about')
         ],[
             InlineKeyboardButton('💰 ᴇᴀʀɴ ᴜɴʟɪᴍɪᴛᴇᴅ ᴍᴏɴᴇʏ ʙʏ ʙᴏᴛ 💰', callback_data='earn')
@@ -638,7 +638,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
 
     elif query.data == "stats":
         if query.from_user.id not in ADMINS:
-            return await query.answer("ADMINS Only!", show_alert=True)
+            return await query.answer("ᴀᴅᴍɪɴs ᴏɴʟʏ!", show_alert=True)
         files = await Media.count_documents()
         users = await db.total_users_count()
         chats = await db.total_chat_count()
@@ -806,10 +806,10 @@ async def cb_handler(client: Client, query: CallbackQuery):
     elif query.data.startswith("send_all"):
         ident, key, req = query.data.split("#")
         if int(req) != query.from_user.id:
-            return await query.answer(f"Hello {query.from_user.first_name},\nDon't Click Other Results!", show_alert=True)        
+            return await query.answer(f"Hᴇʟʟᴏ {lquery.from_user.first_name},\nDᴏɴ'ᴛ Cʟɪᴄᴋ Oᴛʜᴇʀ Rᴇsᴜʟᴛs!", show_alert=True)        
         files = temp.FILES.get(key)
         if not files:
-            await query.answer(f"Hello {query.from_user.first_name},\nSend New Request Again!", show_alert=True)
+            await query.answer(f"Hᴇʟʟᴏ {query.from_user.first_name},\nSᴇɴᴅ Nᴇᴡ Rᴇǫᴜᴇsᴛ Aɢᴀɪɴ!", show_alert=True)
             return        
         await query.answer(url=f"https://t.me/{temp.U_NAME}?start=all_{query.message.chat.id}_{key}")
 
@@ -1092,7 +1092,7 @@ async def advantage_spell_chok(message, s):
     buttons.append(
         [InlineKeyboardButton("🚫 ᴄʟᴏsᴇ 🚫", callback_data="close_data")]
     )
-    s = await s.edit_text(text=f"👋 Hello {message.from_user.mention},\n\nI couldn't find the <b>'{search}'</b> you requested.\nSelect if you meant one of these? 👇", reply_markup=InlineKeyboardMarkup(buttons))
+    s = await s.edit_text(text=f"👋 Hᴇʟʟᴏ {message.from_user.mention},\n\nI ᴄᴏᴜʟᴅɴ'ᴛ ғɪɴᴅ ᴛʜᴇ <b>'{search}'</b> ʏᴏᴜ ʀᴇǫᴜᴇsᴛᴇᴅ.\nSᴇʟᴇᴄᴛ ɪғ ʏᴏᴜ ᴍᴇᴀɴᴛ ᴏɴᴇ ᴏғ ᴛʜᴇsᴇ? 👇", reply_markup=InlineKeyboardMarkup(buttons))
     await asyncio.sleep(300)
     await s.delete()
     try:
