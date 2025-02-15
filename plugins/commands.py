@@ -87,20 +87,21 @@ async def start(client, message):
         expiry_time = datetime.datetime.now() + datetime.timedelta(seconds=VERIFY_EXPIRE)
         await update_verify_status(message.from_user.id, is_verified=True, verified_time=time_now(), expire_time=expiry_time)
     
-   if verify_status["link"]:
-    btn = [[
-        InlineKeyboardButton("📌 Get File 📌", url=f'https://t.me/{temp.U_NAME}?start={verify_status["link"]}')
+    if verify_status["link"]:
+        btn = [[
+            InlineKeyboardButton("📌 Get File 📌", url=f'https://t.me/{temp.U_NAME}?start={verify_status["link"]}')
     ]]
-    reply_markup = InlineKeyboardMarkup(btn + default_buttons)
-else:
-    reply_markup = InlineKeyboardMarkup(default_buttons)
+        reply_markup = InlineKeyboardMarkup(btn + default_buttons)
+    else:
+        reply_markup = InlineKeyboardMarkup(default_buttons)
 
 
-await msg.reply_photo(
-    photo="https://graph.org/file/6928de1539e2e80e47fb8.jpg",
-    caption=f"<b>👋 ʜᴇʏ {message.from_user.mention}, ʏᴏᴜ'ʀᴇ ꜱᴜᴄᴄᴇꜱꜱꜰᴜʟʟʏ ᴠᴇʀɪꜰɪᴇᴅ ✅\n\nɴᴏᴡ ʏᴏᴜ'ᴠᴇ ᴜɴʟɪᴍɪᴛᴇᴅ ᴀᴄᴄᴇꜱꜱ ᴛɪʟʟ ɴᴇxᴛ ᴠᴇʀɪꜰɪᴄᴀᴛɪᴏɴ 🎉</b>: {get_readable_time(VERIFY_EXPIRE)}",
-    reply_markup=reply_markup,
-    protect_content=True)
+    await msg.reply_photo(
+        photo="https://graph.org/file/6928de1539e2e80e47fb8.jpg",
+        caption=f"<b>👋 ʜᴇʏ {message.from_user.mention}, ʏᴏᴜ'ʀᴇ ꜱᴜᴄᴄᴇꜱꜱꜰᴜʟʟʏ ᴠᴇʀɪꜰɪᴇᴅ ✅\n\nɴᴏᴡ ʏᴏᴜ'ᴠᴇ ᴜɴʟɪᴍɪᴛᴇᴅ ᴀᴄᴄᴇꜱꜱ ᴛɪʟʟ ɴᴇxᴛ ᴠᴇʀɪꜰɪᴄᴀᴛɪᴏɴ 🎉</b>: {get_readable_time(VERIFY_EXPIRE)}",
+        reply_markup=reply_markup,
+        protect_content=True
+    )
     return
     
     verify_status = await get_verify_status(message.from_user.id)
