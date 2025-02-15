@@ -105,7 +105,7 @@ async def start(client, message):
     return
     
     verify_status = await get_verify_status(message.from_user.id)
-    if not await db.has_premium_access(message.from_user.id):
+        if not await db.has_premium_access(message.from_user.id):
     
     settings = await get_settings(int(mc.split("_", 2)[1]))
     if not await db.has_premium_access(message.from_user.id):
